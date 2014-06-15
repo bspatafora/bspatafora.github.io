@@ -43,7 +43,7 @@ string, something that SQL databases have no problem storing.
 
 {% gist bspatafora/666de92d042dfe9ac818 %}
 
-This worked, and it would have been trivial to write a parse_from_database 
+This worked, and it would have been trivial to write a `parse_from_database` 
 method to rebuild the data into a multidimensional Ruby array. But it felt a 
 little dirty, and when I asked my mentors about it, they both seemed to 
 indicate a strong preference for doing it another way. Namely, by creating 

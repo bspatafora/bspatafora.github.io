@@ -1,66 +1,130 @@
+/* Resets */
+
+h1, h2, h3, p, ol, ul, li, pre, hr {
+  border: none;
+  font-weight: 300;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
 /* Type */
 
 html {
   font-family: 'Averia Serif Libre';
   font-size: 62.5%; /* Set default root font to 10px */
-  line-height: 1.5
+  line-height: 1.5;
 }
 
 h1 {
-  font-size: 5.2rem
+  font-size: 5.2rem;
 }
 
-h2 {
-  font-size: 3.2rem
+h2, .posts li {
+  font-size: 3.2rem;
+  max-width: 50rem;
+  text-align: center;
 }
 
 h3 {
-  font-size: 2.5rem
+  font-size: 2.5rem;
 }
 
-p, li, code {
-  font-size: 2.0rem
+p, li {
+  font-size: 2.0rem;
 }
 
-.small {
-  font-size: 1.6rem
+.small, code, .gist {
+  font-size: 1.6rem;
+}
+
+/* Color */
+
+html {
+  background: #f4f4f4;
+  color: #0f0f0f;
+}
+
+a {
+  color: #3B4E94;
+}
+
+a:visited {
+  color: #762D84;
+}
+
+.posts a {
+  color: #0f0f0f;
+}
+
+pre {
+  background: #F8F8FF;
+  border: 1px solid #DDD;
+  border-radius: 3px;
+}
+
+header h2, .date {
+  color: #8F8F8F;
 }
 
 /* Layout */
 
 body {
   margin: 0 auto;
-  width: 617px
+  width: 700px;
+}
+
+h2, .posts li {
+  margin: 0 auto;
+}
+
+h2, h3, p, ol, ul, pre {
+  margin-bottom: 2.4rem;
+}
+
+.gist-file {
+  margin-bottom: 2.4rem !important;
+}
+
+header h2 {
+  margin-bottom: 0;
+}
+
+ol, ul {
+  padding-left: 2.4rem;
+}
+
+.posts {
+  padding-left: 0;
+}
+
+pre {
+  padding: 1.2rem;
 }
 
 header {
-  margin-top: 4.8rem
+  margin-top: 4.8rem;
 }
 
-main {
-  margin-bottom: 4.8rem
+header, main {
+  margin-bottom: 4.8rem;
 }
 
-posts {
-  list-style: none;
-  padding: 0;
+.posts li {
+  margin-bottom: 9.6rem;
 }
 
-posts li {
-  margin-bottom: 4.8rem
+.date {
+  display: block;
+  margin-bottom: 2.4rem;
+  text-align: center;
 }
 
 /* ... */
 
-a {
-  color: #29309C;
-  text-decoration: none
-}
-
-a:visited {
-  color: #5C27A4
-}
-
-.gist {
-  font-size: 1.6rem
+.posts {
+  list-style: none;
 }
