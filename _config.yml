@@ -2,3 +2,5 @@ name: Personal blog of Ben Spatafora
 markdown: redcarpet
 pygments: true
 permalink: /blog/:title
+gems:
+  - jekyll-redirect-from
