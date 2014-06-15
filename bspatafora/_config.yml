@@ -1,3 +1,4 @@
-name: Your New Jekyll Site
+name: Ben Spatafora
 markdown: redcarpet
 pygments: true
+permalink: /blog/:title
