@@ -1,4 +1,4 @@
-name: Ben Spatafora
+name: Personal blog of Ben Spatafora
 markdown: redcarpet
 pygments: true
 permalink: /blog/:title

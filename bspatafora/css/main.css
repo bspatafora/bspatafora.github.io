@@ -1,1 +1,66 @@
+/* Type */
 
+html {
+  font-family: 'Averia Serif Libre';
+  font-size: 62.5%; /* Set default root font to 10px */
+  line-height: 1.5
+}
+
+h1 {
+  font-size: 5.2rem
+}
+
+h2 {
+  font-size: 3.2rem
+}
+
+h3 {
+  font-size: 2.5rem
+}
+
+p, li, code {
+  font-size: 2.0rem
+}
+
+.small {
+  font-size: 1.6rem
+}
+
+/* Layout */
+
+body {
+  margin: 0 auto;
+  width: 617px
+}
+
+header {
+  margin-top: 4.8rem
+}
+
+main {
+  margin-bottom: 4.8rem
+}
+
+posts {
+  list-style: none;
+  padding: 0;
+}
+
+posts li {
+  margin-bottom: 4.8rem
+}
+
+/* ... */
+
+a {
+  color: #29309C;
+  text-decoration: none
+}
+
+a:visited {
+  color: #5C27A4
+}
+
+.gist {
+  font-size: 1.6rem
+}
