@@ -40,7 +40,7 @@ The level at which encapsulation should occur is not among the methods within
 a class, but at higher levels, such as among the classes within a system. It’s 
 the boundaries between classes that matter, because classes (and other 
 class-like entities, such as modules) are meant to be the “atom” of an 
-object-oriented system. Of course, this isn’t entirely accurate, as classes are 
-clearly (much) further divisible. But they are often meant to be thought of as 
-indivisible, because ignoring the fact that they have things going on inside of 
-them encourages putting together a system in a more modular way.
+object-oriented system. Of course, this isn’t entirely accurate, as classes 
+are clearly (much) further divisible. But they are often meant to be thought 
+of as indivisible, because ignoring the fact that they have things going on 
+inside of them encourages putting together a system in a more modular way.

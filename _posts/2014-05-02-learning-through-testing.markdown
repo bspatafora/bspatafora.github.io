@@ -17,13 +17,13 @@ two broad themes:
 
 I’ve heard more, and more nuanced, arguments for the second class, perhaps 
 because it’s the more contentious of the two. But one argument I haven’t 
-heard—at least not as explicitly or in the form that it struck me—is that 
-you should write tests because the writing tests you back. A concrete 
-example is probably the best way to explain what I mean.
+heard—at least not as explicitly or in the form that it struck me—is that you 
+should write tests because the writing tests you back. A concrete example is 
+probably the best way to explain what I mean.
 
-As a part of my apprenticeship, I’ve been working on implementing a game in 
-a programming language. (I don’t think the particulars are important here, 
-expect that I was writing the game to be playable via a command-line 
+As a part of my apprenticeship, I’ve been working on implementing a game in a 
+programming language. (I don’t think the particulars are important here, 
+except that I was writing the game to be playable via a command-line 
 interface.) When I first wrote my `play` function—the high-level description 
 of how to step through a single iteration of the game—it included code that 
 looked something like the following:
@@ -33,10 +33,10 @@ looked something like the following:
 
 At the time, I didn’t think twice about the soundness of this. After all, it 
 did exactly what I wanted it to—I’d even factored out the 
-`computer_player_has_won` bit! The first hint something was amiss came when 
-I realized I had no idea how to go about testing the function. (The irony 
-that I might have avoided this problem entirely if I had been consistently [
-testing first][] is not lost on me.)
+`computer_player_has_won` bit! The first hint something was amiss came when I 
+realized I had no idea how to go about testing the function. (The irony that I 
+might have avoided this problem entirely if I had been consistently [testing 
+first][] is not lost on me.)
 
 The solution to this particular problem came in the form of a blog post my 
 mentor Arlandis passed along. It’s called [Testing Code That’s Hard To Test][] 
