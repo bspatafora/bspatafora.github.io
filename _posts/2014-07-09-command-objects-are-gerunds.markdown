@@ -12,15 +12,13 @@ overeating.”
 
 The Command Pattern is a [behavioral design pattern][]. This is its essence:
 
-{% highlight ruby %}
-
-    class SomeCommand
-      def execute
-        # ...
-      end
-    end
-
-{% endhighlight %}
+```ruby
+class SomeCommand
+  def execute
+    # ...
+  end
+end
+```
 
 The idea is that you can make lots of command objects from this class (and 
 other classes that adhere to this “has an execute method” interface), then 
@@ -47,69 +45,67 @@ The [Wikipedia article on the Command Pattern][] contains a simple example of
 the pattern showing its typical structure. Here’s my version of the example, 
 rewritten in Ruby and a little modified:
 
-{% highlight ruby %}
+```ruby
+# Invoker
+class Invoker
+  def initialize
+    @history = []
+  end
 
-    # Invoker
-    class Invoker
-      def initialize
-        @history = []
-      end
+  def record_and_execute(command)
+    @history << command  # Optional
+    command.execute
+  end
+end
 
-      def record_and_execute(command)
-        @history << command  # Optional
-        command.execute
-      end
+# Receiver
+class Light
+  def turn_on
+    puts 'The light is on'
+  end
+
+  def turn_off
+    puts 'The light is off'
+  end
+end
+
+# A command
+class TurnOnCommand
+  def initialize(light)
+    @light = light
+  end
+
+  def execute
+    @light.turn_on
+  end
+end
+
+# Another command
+class TurnOffCommand
+  def initialize(light)
+    @light = light
+  end
+
+  def execute
+    @light.turn_off
+  end
+end
+
+# Client
+class Client
+  def initialize
+    @invoker = Invoker.new
+    @light = Light.new
+  end
+
+  def party
+    50.times do
+      @invoker.record_and_execute(TurnOnCommand.new(@light))
+      @invoker.record_and_execute(TurnOffCommand.new(@light))
     end
-
-    # Receiver
-    class Light
-      def turn_on
-        puts 'The light is on'
-      end
-
-      def turn_off
-        puts 'The light is off'
-      end
-    end
-
-    # A command
-    class TurnOnCommand
-      def initialize(light)
-        @light = light
-      end
-
-      def execute
-        @light.turn_on
-      end
-    end
-
-    # Another command
-    class TurnOffCommand
-      def initialize(light)
-        @light = light
-      end
-
-      def execute
-        @light.turn_off
-      end
-    end
-
-    # Client
-    class Client
-      def initialize
-        @invoker = Invoker.new
-        @light = Light.new
-      end
-
-      def party
-        50.times do
-          @invoker.record_and_execute(TurnOnCommand.new(@light))
-          @invoker.record_and_execute(TurnOffCommand.new(@light))
-        end
-      end
-    end
-
-{% highlight ruby %}
+  end
+end
+```
 
 The example contains four sorts of entities, each with their own 
 responsibility. The **receiver** does the actual work (in this case, it is a 
