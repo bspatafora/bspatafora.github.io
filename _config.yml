@@ -1,6 +1,7 @@
 name: Personal blog of Ben Spatafora
 markdown: kramdown
 pygments: true
+highlighter: pygments
 permalink: /blog/:title
 gems:
   - jekyll-redirect-from
