@@ -12,13 +12,13 @@ overeating.”
 
 The Command Pattern is a [behavioral design pattern][]. This is its essence:
 
-```ruby
+{% highlight ruby linenos %}
 class SomeCommand
   def execute
     # ...
   end
 end
-```
+{% endhighlight %}
 
 The idea is that you can make lots of command objects from this class (and 
 other classes that adhere to this “has an execute method” interface), then 
@@ -45,7 +45,7 @@ The [Wikipedia article on the Command Pattern][] contains a simple example of
 the pattern showing its typical structure. Here’s my version of the example, 
 rewritten in Ruby and a little modified:
 
-```ruby
+{% highlight ruby linenos %}
 # Invoker
 class Invoker
   def initialize
@@ -105,7 +105,7 @@ class Client
     end
   end
 end
-```
+{% endhighlight %}
 
 The example contains four sorts of entities, each with their own 
 responsibility. The **receiver** does the actual work (in this case, it is a 

@@ -70,6 +70,10 @@ header h2, .date {
   color: #8F8F8F;
 }
 
+.lineno {
+  color: #E1E1E1;
+}
+
 /* Layout */
 
 body {

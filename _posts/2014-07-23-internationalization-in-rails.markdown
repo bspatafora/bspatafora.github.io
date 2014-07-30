@@ -55,10 +55,12 @@ just one place, internationalization happens throughout an app.
 Here’s an example of a flash alert that has been internationalized to accept 
 the locale-specific data provided in whatever locale file is in use:
 
-    def input_was_invalid(input)
-      flash.now[:alert] = t(:invalid_input_alert, input: input)
-      render :form
-    end
+{% highlight ruby linenos %}
+def input_was_invalid(input)
+  flash.now[:alert] = t(:invalid_input_alert, input: input)
+  render :form
+end
+{% endhighlight %}
 
 Rails provides a `t` helper method to aid in internationalization. Specifying  
 a symbol corresponding to a key in the active locale file lets Rails know 

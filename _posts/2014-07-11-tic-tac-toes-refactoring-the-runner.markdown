@@ -8,7 +8,7 @@ My Ruby implementation of Tic-tac-toe, Tic-tac-toes, currently runs on the
 command-line. Here’s the class that’s responsible for the policy-level wiring 
 together of the system into a playable game:
 
-```ruby
+{% highlight ruby linenos %}
 module CommandLine
   class Runner
     def initialize(io, menu, rules)
@@ -40,7 +40,7 @@ module CommandLine
     end
   end
 end
-```
+{% endhighlight %}
 
 The problem is that this class has more than one responsibility. In addition 
 to the responsibility described above, it also keeps track of the state of the 
@@ -65,7 +65,7 @@ regardless of IO context.
 To solve this, I extracted a `GameState` class that lives in my TicTacToes 
 module, which is where I keep the game’s core logic:
 
-```ruby
+{% highlight ruby linenos %}
 module TicTacToes
   class GameState
     attr_reader :board, :players
@@ -84,12 +84,12 @@ module TicTacToes
     end
   end
 end
-```
+{% endhighlight %}
 
 The decomposed command-line runner is now free of the core-logic 
 responsibility of keeping track of game state:
 
-```ruby
+{% highlight ruby linenos %}
 module CommandLine
   class Runner
     def initialize(io, menu, game_state_factory, rules)
@@ -127,4 +127,4 @@ module CommandLine
     end
   end
 end
-```
+{% endhighlight %}
