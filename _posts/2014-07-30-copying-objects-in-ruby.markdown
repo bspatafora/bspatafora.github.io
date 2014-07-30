@@ -15,33 +15,36 @@ object.
 
 Here’s the `Board` class we’re working with:
 
-```ruby
-class Board
-  attr_reader :spaces
+{% highlight ruby linenos %}
 
-  def initialize
-    @spaces = [nil, nil, nil, nil, nil, nil, nil, nil, nil]
-  end
-end
-```
+    class Board
+      attr_reader :spaces
+
+      def initialize
+        @spaces = [nil, nil, nil, nil, nil, nil, nil, nil, nil]
+      end
+    end
+{% endhighlight %}
 
 To create a copy of an instance of this class, we might naively try to simply 
 create a new variable and set it to the real board:
 
-```ruby
-real_board = Board.new
-copied_board = real_board
-```
+{% highlight ruby linenos %}
+
+    real_board = Board.new
+    copied_board = real_board
+{% endhighlight %}
 
 But `copied_board` will simply point to the original object, as evidenced by 
 the matching object IDs:
 
-```
-> real_board
-=> #<Board:0x000001012e6628 @spaces=[nil, nil, nil, nil, nil, nil, nil, nil, nil]>
-> copied_board
-=> #<Board:0x000001012e6628 @spaces=[nil, nil, nil, nil, nil, nil, nil, nil, nil]>
-```
+{% highlight ruby linenos %}
+
+    > real_board
+    => #<Board:0x000001012e6628 @spaces=[nil, nil, nil, nil, nil, nil, nil, nil, nil]>
+    > copied_board
+    => #<Board:0x000001012e6628 @spaces=[nil, nil, nil, nil, nil, nil, nil, nil, nil]>
+{% endhighlight %}
 
 This means that any changes we make to `copied_board` will also change 
 `real_board`, which of course is not the behavior we’re looking for.
@@ -51,19 +54,21 @@ the [`clone`][] method is just what we’re looking for. Certainly sounds right,
 doesn’t it? (Ruby also provides objects with a `dup` method, but for our 
 purposes `dup` and `clone` behave the same.) 
 
-```ruby
-real_board = Board.new
-copied_board = real_board.clone
-```
+{% highlight ruby linenos %}
+
+    real_board = Board.new
+    copied_board = real_board.clone
+{% endhighlight %}
 
 We’ve got a good feeling about this. We head back to the REPL to check it out.
 
-```
-> real_board
-=> #<Board:0x000001012e6628 @spaces=[nil, nil, nil, nil, nil, nil, nil, nil, nil]>
-> cloned_board = real_board.clone
-=> #<Board:0x00000101270b30 @spaces=[nil, nil, nil, nil, nil, nil, nil, nil, nil]>
-```
+{% highlight ruby linenos %}
+
+    > real_board
+    => #<Board:0x000001012e6628 @spaces=[nil, nil, nil, nil, nil, nil, nil, nil, nil]>
+    > cloned_board = real_board.clone
+    => #<Board:0x00000101270b30 @spaces=[nil, nil, nil, nil, nil, nil, nil, nil, nil]>
+{% endhighlight %}
 
 Different object IDs! We did it! Elated, we continue work on our AI using 
 `clone` whenever we need to generate a new hypothetical board to work with.
@@ -76,12 +81,13 @@ We know we’re working with different `Board` objects, so how could this be?
 Hungry for answers, we fire up the REPL once again, fortuitously deciding to 
 try the following:
 
-```
-> real_board.spaces.object_id
-=> 2157392620
-> cloned_board.spaces.object_id
-=> 2157392620
-```
+{% highlight ruby linenos %}
+
+    > real_board.spaces.object_id
+    => 2157392620
+    > cloned_board.spaces.object_id
+    => 2157392620
+{% endhighlight %}
 
 Oh. Em. Geez. It would appear that even though `cloned_board` refers to a 
 different object than `real_board`, it still refers to the same object (in 
@@ -102,26 +108,28 @@ scale you’re also probably not reading this post, so I’m going to suggest a
 simpler, if somewhat less performant, approach: Using Ruby’s marshaling 
 library, [`Marshal`][].
 
-```ruby
-real_board = Board.new
-marshaled_board = Marshal.load(Marshal.dump(real_board))
-```
+{% highlight ruby linenos %}
+
+    real_board = Board.new
+    marshaled_board = Marshal.load(Marshal.dump(real_board))
+{% endhighlight %}
 
 `Marshal.dump` serializes our entire complex `Board` object into a string. In 
 so doing, it erases any trace of the original object IDs. `Marshal.load`, in 
 turn, reverses the process, constructing a new object from the data dumped 
 from the original.
 
-```
-> real_board
-=> #<Board:0x000001012e6628 @spaces=[nil, nil, nil, nil, nil, nil, nil, nil, nil]>
-> marshaled_board
-=> #<Board:0x0000010112b8b0 @spaces=[nil, nil, nil, nil, nil, nil, nil, nil, nil]>
-> real_board.spaces.object_id
-=> 2157392620
-> marshaled_board.spaces.object_id
-=> 2156485680
-```
+{% highlight ruby linenos %}
+
+    > real_board
+    => #<Board:0x000001012e6628 @spaces=[nil, nil, nil, nil, nil, nil, nil, nil, nil]>
+    > marshaled_board
+    => #<Board:0x0000010112b8b0 @spaces=[nil, nil, nil, nil, nil, nil, nil, nil, nil]>
+    > real_board.spaces.object_id
+    => 2157392620
+    > marshaled_board.spaces.object_id
+    => 2156485680
+{% endhighlight %}
 
 So, if you ever find yourself in a situation where you need to deep copy some 
 objects in Ruby (and non-optimal performance isn’t an issue), `Marshal.dump` 
