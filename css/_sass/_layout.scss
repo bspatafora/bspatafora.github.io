@@ -1,0 +1,35 @@
+.site-name {
+  color: $light-gray;
+  text-align: center;
+}
+
+body {
+  margin: 5rem auto;
+  padding: 0 5rem;
+  width: 700px;
+}
+
+.post-title {
+  text-align: center;
+}
+
+.posts {
+  list-style: none;
+  text-align: center;
+}
+
+.posts { 
+  li {
+    color: $black;
+    font-size: $sub-headline;
+    margin-bottom: 2rem;
+    a {
+      color: inherit;
+    }
+  }
+}
+
+.date {
+  display: block;
+  text-align: center;
+}

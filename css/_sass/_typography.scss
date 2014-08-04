@@ -1,0 +1,45 @@
+html {
+  font-family: $base-font-family;
+}
+
+h1, 
+h2, 
+h3 {
+  line-height: $base-line-height;
+}
+
+h1 {
+  font-size: $title;
+}
+
+h2 {
+  font-size: $headline;
+}
+
+h3, 
+blockquote p {
+  font-size: $sub-headline;
+}
+
+p, 
+ul, 
+ol {
+  font-size: $primary-text;
+}
+
+.small, 
+pre, 
+code {
+  font-size: $secondary-text;
+}
+
+a {
+  color: $blue;
+  &:visited {
+    color: $purple;
+  }
+}
+
+.lineno {
+  color: $light-gray;
+}

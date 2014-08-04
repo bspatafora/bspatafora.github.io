@@ -2,5 +2,7 @@ name: Personal blog of Ben Spatafora
 markdown: kramdown
 highlighter: pygments
 permalink: /blog/:title
+sass:
+  sass_dir: /css/_sass
 gems:
   - jekyll-redirect-from
