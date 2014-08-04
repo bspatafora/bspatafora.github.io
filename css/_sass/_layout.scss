@@ -33,3 +33,15 @@ body {
   display: block;
   text-align: center;
 }
+
+pre {
+  border: 1px solid $light-gray;
+  line-height: $base-line-height * 0.85;
+  padding: 1.5rem;
+}
+
+blockquote {
+  border-left: 5px solid $black;
+  margin-left: 2rem;
+  padding-left: 2rem;
+}

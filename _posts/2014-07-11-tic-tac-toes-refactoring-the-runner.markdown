@@ -4,9 +4,7 @@ title:  "Tic-tac-toes: Refactoring the runner"
 date:   2014-07-11
 ---
 
-My Ruby implementation of Tic-tac-toe, Tic-tac-toes, currently runs on the 
-command-line. Here’s the class that’s responsible for the policy-level wiring 
-together of the system into a playable game:
+My Ruby implementation of Tic-tac-toe, Tic-tac-toes, currently runs on the command-line. Here’s the class that’s responsible for the policy-level wiring together of the system into a playable game:
 
 {% highlight ruby linenos %}
 module CommandLine
@@ -42,28 +40,13 @@ module CommandLine
 end
 {% endhighlight %}
 
-The problem is that this class has more than one responsibility. In addition 
-to the responsibility described above, it also keeps track of the state of the 
-game. Specifically, it’s the class that knows which `board` object is the one 
-being used in a given game, which `player` objects are playing, and which 
-`player` is next up.
+The problem is that this class has more than one responsibility. In addition to the responsibility described above, it also keeps track of the state of the game. Specifically, it’s the class that knows which `board` object is the one being used in a given game, which `player` objects are playing, and which `player` is next up.
 
-There are two main reasons to extract one of these responsibilities. First, 
-the class as it stands now has more than one reason to change. A change to 
-the way the command-line version of the game runs has a higher chance of 
-affecting the game-state-management aspect of the system as long as both 
-responsibilities live in the same class.
+There are two main reasons to extract one of these responsibilities. First, the class as it stands now has more than one reason to change. A change to the way the command-line version of the game runs has a higher chance of affecting the game-state-management aspect of the system as long as both responsibilities live in the same class.
 
-Second, the coupling of a core-logic responsibility (managing the game state) 
-to a detail (how the game is played when IO is mediated through the command-
-line) means that the system is less portable than it could be. If I move the 
-game to a different IO context (e.g., by building a web application out of 
-it), I won’t be able to reuse this class, even though some of its code (i.e., 
-the core-logic responsibility of managing game state) should be reusable 
-regardless of IO context.
+Second, the coupling of a core-logic responsibility (managing the game state) to a detail (how the game is played when IO is mediated through the command- line) means that the system is less portable than it could be. If I move the game to a different IO context (e.g., by building a web application out of it), I won’t be able to reuse this class, even though some of its code (i.e., the core-logic responsibility of managing game state) should be reusable regardless of IO context.
 
-To solve this, I extracted a `GameState` class that lives in my TicTacToes 
-module, which is where I keep the game’s core logic:
+To solve this, I extracted a `GameState` class that lives in my TicTacToes module, which is where I keep the game’s core logic:
 
 {% highlight ruby linenos %}
 module TicTacToes
@@ -86,8 +69,7 @@ module TicTacToes
 end
 {% endhighlight %}
 
-The decomposed command-line runner is now free of the core-logic 
-responsibility of keeping track of game state:
+The decomposed command-line runner is now free of the core-logic responsibility of keeping track of game state:
 
 {% highlight ruby linenos %}
 module CommandLine

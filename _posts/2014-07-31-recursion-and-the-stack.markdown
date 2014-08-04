@@ -65,11 +65,11 @@ So, with that background, here’s the high-level overview of what happens when 
     * `{ caller: '<main>', arguments: [5] }`
 * When the interpreter evaluates this last call, it can finally return a value rather than making a call/adding another frame to the stack. `number` is 0, so this invocation of `factorial` returns 1.
 * It will then work back through the stack, popping off the last-added frame and evaluating `factorial` with that context and the value returned from its recursive call. This “unwinding” is more easily represented using [Polish notation][]:
-    * `(* 1 (* factorial(1) (* factorial(2) (* factorial(3) (* factorial(4) (* factorial(5)))))))`
-    * `(* 1 (* factorial(2) (* factorial(3) (* factorial(4) (* factorial(5))))))`
-    * `(* 2 (* factorial(3) (* factorial(4) (* factorial(5)))))`
-    * `(* 6 (* factorial(4) (* factorial(5))))`
-    * `(* 24 (* factorial(5)))`
+    * `(* 1 (* factorial(1) (* factorial(2) (* factorial(3) (* factorial(4) (factorial(5)))))))`
+    * `(* 1 (* factorial(2) (* factorial(3) (* factorial(4) (factorial(5))))))`
+    * `(* 2 (* factorial(3) (* factorial(4) (factorial(5)))))`
+    * `(* 6 (* factorial(4) (factorial(5))))`
+    * `(* 24 (factorial(5)))`
     * `(120)`
 
 The key to recursion is that when the interpreter can’t immediately evaluate an expression (as with `return number * factorial(number - 1)` when `number - 1` isn’t 0), it “punts” by adding a new frame to the stack. It does this as many times as it needs, then works its way back through the stack once a call returns a “usable” value (e.g., an integer when the context is multiplication).
