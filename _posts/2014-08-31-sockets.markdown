@@ -1,0 +1,38 @@
+---
+layout: post
+title:  "Sockets"
+date:   2014-08-31
+---
+
+You know when you have enough of an idea of what a term means that you don’t need to stop and ask about it when it comes up in conversation, but when you stop and try to actually define it, you find you come up short? For me, socket has been one of those terms. I finally did ask to have it defined the other day during an IPM with one of my mentors, and he suggested I write a blog post answering the question myself.
+
+I think the primary reason I’d (a) been able to get by with an incomplete understanding of the term and (b) hadn’t felt compelled to spend some time to build up a better one is that the role of sockets had been coupled to my understanding of network connections and ports. The concept has been present in my head all along, but I needed to tease it out from my too-general schema for what a network connection is and what the term “port” refers to.
+
+## Connections
+
+Two devices are sometimes said to have a connection solely because they are able to transmit information to one another, but the term has a more specific technical meaning. A connection is a specific instance of data transmission that has been established between two devices (often two computers).
+
+Connections must be explicitly started and ended, and in a connection-oriented protocol like [TCP][], all transmission of actual data (i.e., data other than that used to establish or terminate a connection) occurs in the context of some already-established connection. In some protocols ([UDP][], for instance), data transmission occurs without establishing a connection.
+
+## Ports
+
+To transmit information over a distributed network, you need a way to identify the device you want to request from or send to. On this internet, this is done by assigning each device an IP address. At this moment, the address assigned to my computer and used to identify it to the rest of the internet is 50.247.131.163.
+
+A device may have multiple processes that want to transmit over the internet simultaneously. In order to allow this, each device has many ports (the default port used by the Rails development server, for example, is 3000). Ports are to the processes on a computer what IP addresses are to devices on a network. They are both means of distinguishing possible endpoints for network data transmission.
+
+## Sockets
+
+A socket is an endpoint that can be used for a particular connection instance. (Sockets can exist apart from connections, but it’s simpler to talk about them in the context of a connection.) Processes use sockets to send and receive information to/from other devices over a network.
+
+On the internet, each socket is described by five things:
+
+  * The IP address of the local device
+  * The port being used by the local device socket
+  * The IP address of the remote device
+  * The port being used by the remove device socket
+  * The transport protocol (for example, TCP or UDP)
+
+The fact that both ports and sockets can be described as endpoints produces some of the confusion about the distinction between the two. The difference is this: Ports are (in concept) eternal, but sockets are created and destroyed. While my computer has a port 3000 whether or not it is being used, there’s only a socket waiting for connection requests directed to that port once I type `rails server` in the console. Put another way, sockets live at ports and connect to sockets living at other ports (typically also at other IP addresses). If ports are loading docks used for deliveries, sockets are the workers that actually accept the deliveries as they come in.
+
+[TCP]: http://en.wikipedia.org/wiki/Transmission_Control_Protocol
+[UDP]: http://en.wikipedia.org/wiki/User_Datagram_Protocol
