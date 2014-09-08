@@ -6,13 +6,13 @@ date:   2014-09-03
 
 I’ve been working through a book called [“Release It!”][] along with 8th Light’s distributed services discussion group, and I wanted to mark down some thoughts I’ve had so far. Even though I’m not in the best position to gain from the book, given that I haven’t worked on any large-scale, distributed software systems, many of the book’s points have resonated with me.
 
-### The overarching message: Assume failures will occur
+## The overarching message: Assume failures will occur
 
 As much as you would like (and should try) to put together a system that does not fail, it’s an unrealistic goal for all but the most trivial and isolated systems. First, humans aren’t perfect, so the systems they design aren’t either. Second, distributed systems tend to work over the internet, and network conditions are unreliable. Third, most complex systems connect to numerous external services (like a credit card processing service, for instance), and failure on the part of any of these can easily result in failure in or of your system.
 
 What should you do given this? Plan for failure. Design the system in such a way that when failures do occur, they can be resolved without affecting the normal operation of the system, or at least do not ripple through the rest of the system causing additional damage.
 
-### Cracks in the system
+## Cracks in the system
 
 Failure of part or all of a distributed system can occur for many reasons. The most common underlying cause is tight coupling.
 
@@ -20,7 +20,7 @@ Imagine an application that makes calls to some remote service (this could again
 
 The extent to which the client application is affected will depend on whether care has been taken to keep it isolated from other system components, such as the swamped service. If this modularity hasn’t been afforded, the “crack” started by the one component may spread throughout the system.
 
-### “Stability patterns”
+## “Stability patterns”
 
 The book identifies 8 patterns that can help prevent something like the above from happening when the inevitable failure does occur somewhere in a system. Two I found particularly interesting are circuit breaker and handshaking.
 
