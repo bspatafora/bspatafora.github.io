@@ -1,0 +1,36 @@
+---
+layout: post
+title: "OAuth"
+date:   2014-11-22
+---
+
+I’m working on a time off application for 8th light. One of the requirements is that login should occur via Google OAuth.
+
+Prior to this story, I’d only experienced OAuth from the perspective of an application’s user, trying to log myself in via some service (usually Google or Facebook). I knew it as the odd-looking page that appeared after selecting the “Sign in via [whatever service]” button and asked you to confirm you wanted to grant some specified degree of access to the application.
+
+One thing I did have a sense of was that there must be a protocol of some sort underlying this sort of login. I knew this only because of how similar the flow felt across the applications I was logging into and the services I was logging in with. It always involved a redirect to the service for the “do you grant consent” part, then back to the website or app once I’d confirmed. The rest was a mystery, but after a fair bit of toil getting things set up with the time off app I have a much better understanding of how the process works.
+
+Since I worked with Google’s authentication flow in particular, some of my information may be colored by the details of how Google does things, though the general flow should be largely the same across services. I also used the [OmniAuth][] library and the [omniauth-google-oauth2][] OAuth “strategy,” so some of the lower-level details were handled for me.
+
+## Registering your app
+
+The first part of the puzzle is to register your application with the authentication service. With Google, this involves logging onto their developers console, creating a project, and deciding which APIs to enable. In particular, I needed to not only authenticate users but also be authorized to add calendar events in their name, so I made sure to enable the Calendar API. But in order to even authenticate users with the omniauth-google-oauth2 gem, you need to enable the Contacts and Google+ APIs.
+
+The next step is to generate two keys—the client identifier and client secret—for the application you just created. These keys are used to identify your application to the auth service.
+
+## Authenticating the user and getting the authorization code
+
+The authentication process is kicked off when a user visits a Google auth URL that includes the client identifier of your app in one of the query string parameters. The user might get to this URL via a “Sign in with Google” link in your app, or be automatically redirected to it if they haven’t already authenticated. In addition to your client identifier, the URL will contain other auth details, such as the URL Google should redirect to on auth success/failure and the “scope” of access the user is granting your application (for example, calendar, contacts, and Google+ access).
+
+From the user’s perspective, this is the page with the little box telling them that the app they were (hopefully) just using would like to access some of their data or perform certain actions on their behalf. If the user approves, Google calls back to the provided URL with an authorization code.
+
+## Exchanging the authorization code for an access token
+
+The authorization code can then be sent back to Google, along with your client identifier and client secret, in order to obtain an access token. This is the token your application needs to pass along (in an “Authorization” header) with any requests to access the user’s protected resources (such as adding a calendar event in their name).
+
+## Using the refresh token to get new access tokens
+
+One additional detail is that Google’s access tokens expire after an hour. In order to get a new access token for a user that has already granted consent to your application, you need to send a request to another Google URL with a refresh token. The first time a user grants consent to your application, Google will send a refresh token along when you’re exchanging the authorization code for the first access token. This refresh token should be persisted as it is only sent once and is the only way to avoid having the user need to reauthorize your app after every hour of use.
+
+[OmniAuth]: https://github.com/intridea/omniauth
+[omniauth-google-oauth2]: https://github.com/zquestz/omniauth-google-oauth2
