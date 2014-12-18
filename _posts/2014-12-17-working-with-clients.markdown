@@ -1,0 +1,13 @@
+---
+layout: post
+title:  "Working with clients"
+date:   2014-12-17
+---
+
+In the last two weeks, Mike Jansen has given a couple of talks on working with clients. This is an aspect of working at 8th Light that I haven’t spent as much time thinking about, so I found it helpful to hear his perspective on it, and just to be prompted to give it some more thought.
+
+On reflection, I realized that while I haven’t been thinking about it explicitly, my mentors have been exercising my ability to work with clients all throughout the last six months. Each week, we’ve met for iteration-planning meetings averaging half and hour to an hour. In them, I’ve demoed the stories I worked on that week and we’ve formed and discussed the stories for the next one.
+
+Over successive IPMs, I focused more on the quality of my demos, taking time before the meeting to plan out how I would demonstrate various features, and in many cases doing practice runs to find any wrinkles before being in front of the “clients.” In addition to the practice IPMs, there have also been a number of times I’ve picked up on my mentors asking questions or making comments that I might expect to field from actual clients in the future. For example, they’ve sometimes pushed back against an estimate I’ve given, implying that I should be able to get the future done faster. Being put in situations like this has forced me to be more conscientious and intentional about my decisions and words, in addition to providing an opportunity to consider how to respond in certain situations before they occur in a higher-stakes context.
+
+The thing that struck me most during Mike’s sessions has been the amount of emphasis he’s put on the importance of how we engage with our clients, and how that sets 8th Light apart from similar companies. I’ve primarily thought of 8th Light as being defined by its technical process, the approach that craftsmen take to building or reworking a system using disciplines like TDD and skillfully using design. But these sessions made me realize that our relationship with our clients is at least as important. It sounds like there are many cases where the stakeholders of a project become frustrated by the disconnect between what they want their software to be and how it develops, or end up disappointed by missed deadlines. 8th Light craftsmen do better in part by working closely and honestly with clients during the development process—meeting frequently to write stories together, providing accurate estimates, and keeping their commitments—which makes it much more likely that stakeholder expectations and developer understanding stay in sync throughout a project.
