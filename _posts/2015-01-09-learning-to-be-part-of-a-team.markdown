@@ -4,7 +4,7 @@ title:  "Learning to be part of a team"
 date:   2015-01-09
 ---
 
-It’s been a few weeks since I started working on Thrill Jockey, but I’m still adjusting to and learning about working on a team. I’ve been struck throughout by how different it is from working on your own.
+It’s been a few weeks since I started working on my first client project, but I’m still adjusting to and learning about working on a team. I’ve been struck throughout by how different it is from working on your own.
 
 When I was working alone, I had my own particular rhythm—I tend to move very intentionally and slowly—and I always knew exactly what was being done because I was the only one doing it.
 

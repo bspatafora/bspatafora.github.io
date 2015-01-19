@@ -4,7 +4,7 @@ title:  "Keeping code quality high on a real project"
 date:   2015-01-16
 ---
 
-I joined the Thrill Jockey team a few weeks ago. It’s my first time doing client work, and also the the first time I’ve worked on a (non-trivial) project that I didn’t start myself. Though I joined the project after spending months developing my knowledge of and experience in the coding techniques that 8th Light espouses, I feel like I’ve been treading on relatively new territory in having to work with code I didn’t write.
+I joined a client project team a few weeks ago. It’s my first time doing client work, and also the the first time I’ve worked on a (non-trivial) project that I didn’t start myself. Though I joined the project after spending months developing my knowledge of and experience in the coding techniques that 8th Light espouses, I feel like I’ve been treading on relatively new territory in having to work with code I didn’t write.
 
 ## Staying humble
 
