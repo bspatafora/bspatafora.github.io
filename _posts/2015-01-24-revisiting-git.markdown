@@ -1,0 +1,17 @@
+---
+layout: post
+title:  "Revisiting Git"
+date:   2015-01-24
+---
+
+The other day, I asked another apprentice how they developed the broad technical knowledge I’d noticed they have. They told me that one thing they do is take some time each day to read up on technical things casually—for example, by scanning Hacker News. I’m working on picking up this habit, and it’s already prompted me (via a related post) to improve my understanding of Git. These are some of the areas I’ve gotten a better feel for.
+
+**How repositories are actually structured**: A Git repository is made up of commit objects. Each commit is connected to the rest of the commits because it has a reference to its parent commit. The initial commit is the only commit in a project that will not have a reference to a parent commit. You can traverse the tree of commits using the name of each commit (a unique, SHA-1 hash value) and each commit’s reference to its parent(s).
+
+**How Git stores your files**: Git keeps track of files using “blob” objects. A blob is created by (a) writing a header for the object, which consists of the type (“blob”), the content length, and a null byte, (b) generating a SHA-1 value based on this header plus the file contents, and (c) compressing the header plus the file contents with zlib. The blob is stored in a subdirectory of `.git/objects` that corresponds to the first two characters of its SHA-1, in a file named with the remaining 38 characters of the SHA-1 (example: `.git/objects/0d/079f3ef128c91b0bbff9be28b4d3b6cfe0c61d`). Tree and commit objects are created and stored in like manner. Tree objects are used to associate blobs with their filenames and directories, and commit objects reference the top level tree object for a commit and store additional info like who made the commit and why.
+
+**What “HEAD” is, and what a head is**: HEAD is an alias that refers to the commit you’re working on. A repository will often have more than one (lowercase) head. A head is the latest commit on a branch. So, if you’re on master, HEAD is the latest commit on the master branch, and be0b83a85b4bcf84e5f3ea925cc6216bc315af8d might be the the head of the feature branch you were working on the other day. These and other references make it so you don’t have to remember the SHA-1 values of the commits you want to work with, and are stored in `.git/refs`.
+
+**You always branch from a certain commit**: This is one of those things I “knew” without really ever thinking about. When creating a branch, I’ve always just done something like `git branch new-branch`. If I needed to branch of master but was on a different branch at the time I realized I needed a new one, I’d just checkout master before using something like the above command. But you can explicitly specify the commit to base your new branch on with something like `git branch new-branch existing-commit`.
+
+**What merging looks like on the tree**: When you merge one head into another, you’re creating a commit with two parents. As a part of merging, Git creates a new commit containing the changes made in both the current head and the head you’re pulling in (“changes” being relative to the common ancestor of the two heads). This new commit has references to both of the above commits as its parent commits. If the head you’re merging in is an ancestor of the current head, Git performs a “fast-forward” merge, which simply moves heads around rather than creating a new commit.
